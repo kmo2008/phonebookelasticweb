@@ -21,18 +21,32 @@ public class PhonebookelasticApplication implements CommandLineRunner {
      */
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Initialice Elastic module for serach
+     */
     @Autowired
     private ElasticsearchOperations es;
 
+    /**
+     * Autowired to person Service
+     */
     @Autowired
     private PersonService personService;
 
+    /**
+     * Main class
+     * @param args Arguments on run
+     */
     public static void main(String[] args) {
         SpringApplication.run(PhonebookelasticApplication.class, args);
     }
 
+    /**
+     * Overrided run method for spring application
+     * @param args Arguments on run
+     */
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         if (args.length != 0) {
             if (args[0].equals("-add")) {
                 add();
@@ -58,11 +72,18 @@ public class PhonebookelasticApplication implements CommandLineRunner {
         System.out.println("For close press CTRL+C");
     }
 
+    /**
+     * This method show all contacts in ASC order
+     */
     private void show() {
         StreamSupport.stream(personService.findAll().spliterator(), true)
                 .sorted(Comparator.comparing(Person::getName)).forEachOrdered(person -> System.out.println(person.toStringView()));
     }
 
+    /**
+     * This method show chosen contacts in ASC order
+     * @param name Full or part of the name
+     */
     private void show(String name) {
         StreamSupport.stream(personService.findAll().spliterator(), true)
                 .sorted(Comparator.comparing(Person::getName))
@@ -70,6 +91,10 @@ public class PhonebookelasticApplication implements CommandLineRunner {
                 .forEach(person -> System.out.println(person.toStringView()));
     }
 
+    /**
+     * This method deleting chosen contact
+     * @param name
+     */
     private void delete(String name) {
         personService.findDistinctByNameEquals(name).forEach(person -> {
             personService.delete(person);
@@ -77,6 +102,10 @@ public class PhonebookelasticApplication implements CommandLineRunner {
         });
     }
 
+    /**
+     * This methon update chosen contact
+     * @param name Full of the name
+     */
     private void update(String name) {
         String newName = inputName();
         String number = inputNumber();
@@ -88,7 +117,9 @@ public class PhonebookelasticApplication implements CommandLineRunner {
         } else System.out.println("Wprowadz dane jescze raz.");
     }
 
-
+    /**
+     * This method add new contact
+     */
     private void add() {
         String name = inputName();
         String number = inputNumber();

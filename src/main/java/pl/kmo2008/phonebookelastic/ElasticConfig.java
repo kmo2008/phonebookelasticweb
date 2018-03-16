@@ -13,6 +13,9 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 
 import java.net.InetAddress;
 
+/**
+ * Elastic configuration class
+ */
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "pl.kmo2008.phonebookelastic.repository")
 public class ElasticConfig {

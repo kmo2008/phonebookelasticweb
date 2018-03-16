@@ -8,6 +8,9 @@ import pl.kmo2008.phonebookelastic.service.PersonService;
 
 import java.util.stream.Stream;
 
+/**
+ * Implementation of service for database
+ */
 @Service
 public class PersonServiceImpl implements PersonService {
 
