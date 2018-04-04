@@ -42,35 +42,35 @@ public class PhonebookelasticApplication implements CommandLineRunner {
     }
 
     /**
-     * Overrided run method for spring application
+     * Overrided run method for  @Override
+     *     public void run(String... args) {
+     *         if (args.length != 0) {
+     *             if (args[0].equals("-add")) {
+     *                 add();
+     *             } else if (args[0].equals("-update")) {
+     *                 if (!args[1].isEmpty()) {
+     *                     update(args[1]);
+     *                 } else {
+     *                     System.out.println("Niepoprawne dane wejściowe. Przykład: java -jar phonebook.jar -update Jan");
+     *                 }
+     *             } else if (args[0].equals("-delete")) {
+     *                 if (!args[1].isEmpty()) {
+     *                     delete(args[1]);
+     *                 } else {
+     *                     System.out.println("Niepoprawne dane wejściowe. Przykład: java -jar phonebook.jar -delete Jan");
+     *                 }
+     *             } else {
+     *                 show(args[0]);
+     *             }
+     *         } else {
+     *             show();
+     *         }
+     *
+     *         System.out.println("For close press CTRL+C");
+     *     }spring application
      * @param args Arguments on run
      */
-    @Override
-    public void run(String... args) {
-        if (args.length != 0) {
-            if (args[0].equals("-add")) {
-                add();
-            } else if (args[0].equals("-update")) {
-                if (!args[1].isEmpty()) {
-                    update(args[1]);
-                } else {
-                    System.out.println("Niepoprawne dane wejściowe. Przykład: java -jar phonebook.jar -update Jan");
-                }
-            } else if (args[0].equals("-delete")) {
-                if (!args[1].isEmpty()) {
-                    delete(args[1]);
-                } else {
-                    System.out.println("Niepoprawne dane wejściowe. Przykład: java -jar phonebook.jar -delete Jan");
-                }
-            } else {
-                show(args[0]);
-            }
-        } else {
-            show();
-        }
 
-        System.out.println("For close press CTRL+C");
-    }
 
     /**
      * This method show all contacts in ASC order
@@ -176,4 +176,8 @@ public class PhonebookelasticApplication implements CommandLineRunner {
     }
 
 
+    @Override
+    public void run(String... args) throws Exception {
+
+    }
 }
